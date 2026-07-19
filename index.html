@@ -153,13 +153,17 @@
   .who p{font-size:.92rem}
 
   /* Past sessions */
-  .past{display:grid;gap:14px}
-  .past article{
-    display:flex;gap:22px;align-items:baseline;padding:20px 24px;
-    border:1px solid #EFE4F5;border-radius:14px;flex-wrap:wrap;
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+  .gallery figure{
+    background:#fff;border:1px solid #EFE4F5;border-radius:var(--radius);
+    overflow:hidden;box-shadow:0 6px 20px rgba(50,21,96,.08);
+    transition:transform .15s ease;
   }
-  .past time{font-family:'Sora',sans-serif;font-weight:700;font-size:.82rem;color:var(--magenta);min-width:110px}
-  .past h3{font-size:1.05rem}
+  .gallery figure:hover{transform:translateY(-4px)}
+  .gallery img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .gallery figcaption{padding:14px 16px;font-size:.9rem;color:var(--body)}
+  .gallery time{display:block;font-family:'Sora',sans-serif;font-weight:700;font-size:.76rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--magenta);margin-bottom:3px}
 
   /* Join */
   #join{background:linear-gradient(150deg,var(--purple),#4B2380 60%,var(--magenta));color:#F3E8FA;text-align:center}
@@ -169,6 +173,19 @@
   #join .btn-primary{background:#fff;color:var(--purple);box-shadow:0 8px 24px rgba(0,0,0,.3)}
   #join .btn-ghost{border-color:#F2A9D6;color:#fff;margin-left:0}
 
+  #toolkit{padding-top:0}
+  .toolkit-card{
+    display:grid;grid-template-columns:1.4fr .6fr;gap:36px;align-items:center;
+    background:var(--lavender);border:1px solid #EBD9F2;border-radius:24px;padding:44px 48px;
+  }
+  .toolkit-card h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:14px}
+  .toolkit-card p{margin-bottom:18px}
+  .toolkit-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .toolkit-tags span{
+    font-family:'Sora',sans-serif;font-size:.74rem;font-weight:600;color:var(--purple);
+    background:#fff;border:1px solid #EBD9F2;border-radius:999px;padding:5px 12px;
+  }
+  @media(max-width:760px){.toolkit-card{grid-template-columns:1fr;padding:32px 26px}.toolkit-art{max-width:220px;margin:0 auto}}
   footer{padding:34px 0;text-align:center;font-size:.86rem;color:#8A7BA3}
   footer .tagline{font-family:'Sora',sans-serif;font-weight:700;color:var(--purple);margin-bottom:6px}
 
@@ -194,6 +211,7 @@
       <li><a href="#session">Next session</a></li>
       <li><a href="#climb">What we do</a></li>
       <li><a href="#community">Community</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
       <li><a href="#join" class="btn btn-primary">Join us</a></li>
     </ul>
   </div>
@@ -252,13 +270,13 @@
       <h2>Next session</h2>
     </div>
     <div class="session-grid">
-      <a class="flyer reveal" href="assets/August_Ascende.png" aria-label="Open the August session flyer">
-        <img src="assets/August_Ascende.png" alt="August session flyer: Creating Opportunities in the AI Boom" loading="lazy">
+      <a class="flyer reveal" href="assets/august-flyer.jpg" aria-label="Open the August session flyer">
+        <img src="assets/august-flyer.jpg" alt="August session flyer: Creating Opportunities in the AI Boom" loading="lazy">
       </a>
       <div class="reveal">
         <span class="badge">Practical session</span>
         <h3 class="session-title">Creating Opportunities in the <em>AI Boom</em></h3>
-        <p class="speaker">with <strong>Bolarinwa Ajayi</strong> — Solution Engineer &amp; Microsoft Digi Girls Award Winner<br>Hosted by <strong>Dr. Olusegun</strong> (USA)</p>
+        <p class="speaker">with <strong>Bolarinwa Ajayi</strong> — Solution Engineer &amp; Microsoft Digi Girls Award Winner<br>Hosted by <strong>Dr. Olusegun</strong> (USA) &middot; Powered by <strong>The ASCENDE Team</strong></p>
         <ul class="details">
           <li><span class="k">Date</span><span class="v">Saturday, August 1st, 2026</span></li>
           <li><span class="k">Time</span><span class="v">1:00 PM WAT · 2:00 PM CET · 8:00 AM EDT</span></li>
@@ -266,7 +284,7 @@
           <li><span class="k">Where</span><span class="v">Live on Zoom — the join link is sent to you after you register</span></li>
         </ul>
         <a class="btn btn-primary" href="https://docs.google.com/forms/d/1YAmGswF050MZJEDh_T9LRwa9bW-9gOTNFYajNnuNpTc/viewform" rel="noopener">Register free to attend</a>
-        <a class="btn btn-ghost" href="assets/august-flyer.png" download>Download the flyer</a>
+        <a class="btn btn-ghost" href="assets/august-flyer.jpg" download>Download the flyer</a>
       </div>
     </div>
   </div>
@@ -322,10 +340,40 @@
       <p class="eyebrow">Recent sessions</p>
       <h2>Where we've been climbing</h2>
     </div>
-    <div class="past">
-      <article class="reveal"><time datetime="2026-07-04">July 2026</time><h3>Resilience as the Bedrock of Freedom</h3></article>
-      <article class="reveal"><time datetime="2026-06-01">[Month 2026]</time><h3>[Add a past session title]</h3></article>
-      <article class="reveal"><time datetime="2026-05-01">[Month 2026]</time><h3>[Add a past session title]</h3></article>
+    <div class="gallery">
+      <figure class="reveal"><img src="assets/july-edition.jpg" alt="July 2026 flyer: Resilience as the Bedrock of Freedom" loading="lazy"><figcaption><time datetime="2026-07">July 2026</time> Resilience as the Bedrock of Freedom</figcaption></figure>
+      <figure class="reveal"><img src="assets/june-edition.jpg" alt="June 2026 flyer: Claim the Tools — Turn AI into Opportunity" loading="lazy"><figcaption><time datetime="2026-06">June 2026</time> Claim the Tools: Turn AI into Opportunity</figcaption></figure>
+      <figure class="reveal"><img src="assets/may-edition.jpg" alt="May 2026 flyer: Forge the Way, Become the Force" loading="lazy"><figcaption><time datetime="2026-05">May 2026</time> Forge the Way, Become the Force</figcaption></figure>
+      <figure class="reveal"><img src="assets/april-edition.jpg" alt="April 2026 flyer: The Growth Approach — Focus on Evolution" loading="lazy"><figcaption><time datetime="2026-04">April 2026</time> The &ldquo;Growth&rdquo; Approach (Focus on Evolution)</figcaption></figure>
+      <figure class="reveal"><img src="assets/march-edition.jpg" alt="March 2026 flyer: The Strength Approach — Focus on Resilience" loading="lazy"><figcaption><time datetime="2026-03">March 2026</time> The Strength Approach &mdash; Focus on Resilience</figcaption></figure>
+      <figure class="reveal"><img src="assets/feb-edition.jpg" alt="February 2026 flyer: Master the Path, Own the Climb" loading="lazy"><figcaption><time datetime="2026-02">February 2026</time> Master the Path, Own the Climb</figcaption></figure>
+      <figure class="reveal"><img src="assets/jan-edition.jpg" alt="January 2026 flyer: See the Summit, Rise to It" loading="lazy"><figcaption><time datetime="2026-01">January 2026</time> See the Summit, Rise to It</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="toolkit-card reveal">
+      <div>
+        <p class="eyebrow">Free member resource</p>
+        <h2>Olusegun Python Toolkit</h2>
+        <p>A free, plug-and-play Python learning environment we built for our members and mentees — especially those with limited internet access. Install it once and everything works <strong>fully offline</strong>: Jupyter Notebook, guided welcome lessons, and a complete pre-installed stack for data science and machine learning (pandas, NumPy, Matplotlib, PyTorch, TensorFlow, and more). No setup headaches — download, install, and start coding in minutes.</p>
+        <p class="toolkit-tags"><span>Learn Python offline</span><span>Beginner-friendly</span><span>Jupyter included</span><span>ML libraries bundled</span><span>Windows</span></p>
+        <a class="btn btn-primary" href="https://github.com/chrystali2002/Olusegun-Python-Toolkit" rel="noopener">Download free on GitHub</a>
+      </div>
+      <div class="toolkit-art" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="30" width="160" height="110" rx="10" fill="#321560"/>
+          <rect x="20" y="30" width="160" height="26" rx="10" fill="#4B2380"/>
+          <circle cx="38" cy="43" r="4" fill="#C4378F"/><circle cx="52" cy="43" r="4" fill="#D9A441"/><circle cx="66" cy="43" r="4" fill="#fff" opacity=".7"/>
+          <text x="34" y="82" fill="#F2A9D6" font-family="monospace" font-size="13">&gt;&gt;&gt; import pandas</text>
+          <text x="34" y="102" fill="#fff" font-family="monospace" font-size="13">&gt;&gt;&gt; learn()</text>
+          <text x="34" y="122" fill="#D9A441" font-family="monospace" font-size="13"># no internet needed</text>
+          <path d="M60 160 h80 l-8 14 h-64 Z" fill="#4B2380"/>
+          <rect x="88" y="140" width="24" height="20" fill="#321560"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
