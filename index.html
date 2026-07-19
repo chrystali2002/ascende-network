@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASCENDE Network — Edit. Equip. Empower</title>
+<meta name="description" content="ASCENDE Network is a women-centered empowerment and mentorship community. Monthly virtual hangouts where women learn, grow, and lead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A1150;
+    --purple:#321560;
+    --magenta:#C4378F;
+    --gold:#D9A441;
+    --lavender:#F6EFFA;
+    --paper:#FFFDFE;
+    --body:#4A3D5E;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Figtree',sans-serif;
+    color:var(--body);
+    background:var(--paper);
+    line-height:1.65;
+    font-size:17px;
+  }
+  h1,h2,h3{font-family:'Sora',sans-serif;color:var(--ink);line-height:1.15}
+  a{color:var(--magenta)}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);
+    display:inline-flex;align-items:center;gap:.6em;margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--magenta)}
+  .btn{
+    display:inline-block;font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;
+    padding:14px 28px;border-radius:999px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--magenta);color:#fff;box-shadow:0 8px 24px rgba(196,55,143,.35)}
+  .btn-ghost{border:2px solid var(--purple);color:var(--purple);margin-left:10px}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;background:rgba(255,253,254,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid #EFE4F5;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1080px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand svg{width:34px;height:30px}
+  .brand-name{font-family:'Sora',sans-serif;font-weight:800;color:var(--purple);font-size:1.05rem;letter-spacing:.02em}
+  .brand-name span{display:block;font-size:.6rem;font-weight:600;letter-spacing:.42em;color:var(--magenta)}
+  .nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+  .nav-links a{font-family:'Sora',sans-serif;font-size:.86rem;font-weight:600;color:var(--ink);text-decoration:none}
+  .nav-links a:hover{color:var(--magenta)}
+  .nav-links .btn{padding:10px 20px}
+  @media(max-width:760px){.nav-links li:not(:last-child){display:none}}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    background:linear-gradient(160deg,#FBF3FB 0%, var(--lavender) 45%, #EFE0F6 100%);
+    overflow:hidden;position:relative;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:84px 0 0}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.6rem);font-weight:800;margin-bottom:20px}
+  .hero h1 em{font-style:normal;color:var(--magenta)}
+  .hero p.lead{font-size:1.12rem;max-width:46ch;margin-bottom:32px}
+  .verbs{display:flex;gap:14px;margin-bottom:28px;flex-wrap:wrap}
+  .verbs span{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;color:var(--purple);
+    background:#fff;border:1px solid #EBD9F2;border-radius:999px;padding:8px 18px;
+    box-shadow:0 3px 10px rgba(50,21,96,.07);
+  }
+  .verbs span b{color:var(--magenta)}
+  .hero-cta{padding-bottom:70px}
+
+  /* signature: the ascent */
+  .ascent{position:relative;align-self:end}
+  .ascent svg{width:100%;height:auto}
+  .milestone{font-family:'Sora',sans-serif;font-weight:700;font-size:13px;fill:#fff}
+  @media(max-width:820px){
+    .hero-grid{grid-template-columns:1fr;padding-top:56px}
+    .ascent{max-width:420px;margin:0 auto}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:88px 0}
+  .section-head{max-width:620px;margin-bottom:48px}
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:14px}
+
+  /* Next session */
+  #session{background:var(--purple);color:#E9DDF5}
+  #session .section-head h2{color:#fff}
+  #session .eyebrow{color:var(--gold)}
+  #session .eyebrow::before{background:var(--gold)}
+  .session-grid{display:grid;grid-template-columns:380px 1fr;gap:48px;align-items:start}
+  .flyer{border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);transform:rotate(-1.5deg)}
+  .badge{
+    display:inline-block;background:var(--gold);color:var(--ink);font-family:'Sora',sans-serif;
+    font-weight:700;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:7px 16px;border-radius:999px;margin-bottom:18px;
+  }
+  .session-title{font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:#fff;margin-bottom:8px}
+  .session-title em{font-style:normal;color:#F2A9D6}
+  .speaker{color:#CBB8E6;margin-bottom:26px}
+  .speaker strong{color:#fff}
+  .details{list-style:none;display:grid;gap:12px;margin-bottom:30px}
+  .details li{display:flex;gap:14px;align-items:baseline}
+  .details .k{font-family:'Sora',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);min-width:86px}
+  .details .v{color:#fff}
+  #session .btn-primary{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  #session .btn-ghost{border-color:#CBB8E6;color:#fff}
+  @media(max-width:860px){.session-grid{grid-template-columns:1fr}.flyer{max-width:360px;margin:0 auto}}
+
+  /* The climb */
+  .climb{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;counter-reset:none}
+  .stage{padding:34px 30px 0;position:relative}
+  .stage::before{
+    content:"";position:absolute;top:0;left:30px;right:0;height:3px;
+    background:linear-gradient(90deg,var(--magenta),#E8C7DE);
+  }
+  .stage:last-child::before{background:linear-gradient(90deg,var(--magenta),var(--gold))}
+  .stage-flag{
+    position:absolute;top:-13px;left:30px;width:26px;height:26px;border-radius:50%;
+    background:var(--magenta);display:grid;place-items:center;color:#fff;font-size:13px;
+  }
+  .stage:last-child .stage-flag{background:var(--gold);color:var(--ink)}
+  .stage h3{font-size:1.2rem;margin-bottom:10px}
+  .stage p{font-size:.98rem}
+  /* each stage sits a little higher than the last — the climb */
+  @media(min-width:761px){
+    .stage:nth-child(2){transform:translateY(-26px)}
+    .stage:nth-child(3){transform:translateY(-52px)}
+    .climb{padding-top:52px}
+  }
+  @media(max-width:760px){.climb{grid-template-columns:1fr;gap:44px}}
+
+  /* Community */
+  #community{background:var(--lavender)}
+  .who{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .who div{
+    background:#fff;border-radius:var(--radius);padding:26px 24px;
+    border:1px solid #EBD9F2;
+  }
+  .who h3{font-size:1.02rem;margin-bottom:6px}
+  .who p{font-size:.92rem}
+
+  /* Past sessions */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+  .gallery figure{
+    background:#fff;border:1px solid #EFE4F5;border-radius:var(--radius);
+    overflow:hidden;box-shadow:0 6px 20px rgba(50,21,96,.08);
+    transition:transform .15s ease;
+  }
+  .gallery figure:hover{transform:translateY(-4px)}
+  .gallery img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .gallery figcaption{padding:14px 16px;font-size:.9rem;color:var(--body)}
+  .gallery time{display:block;font-family:'Sora',sans-serif;font-weight:700;font-size:.76rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--magenta);margin-bottom:3px}
+
+  /* Join */
+  #join{background:linear-gradient(150deg,var(--purple),#4B2380 60%,var(--magenta));color:#F3E8FA;text-align:center}
+  #join h2{color:#fff;font-size:clamp(1.8rem,3.6vw,2.5rem);margin-bottom:14px}
+  #join p{max-width:52ch;margin:0 auto 34px}
+  .join-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  #join .btn-primary{background:#fff;color:var(--purple);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+  #join .btn-ghost{border-color:#F2A9D6;color:#fff;margin-left:0}
+
+  #toolkit{padding-top:0}
+  .toolkit-card{
+    display:grid;grid-template-columns:1.4fr .6fr;gap:36px;align-items:center;
+    background:var(--lavender);border:1px solid #EBD9F2;border-radius:24px;padding:44px 48px;
+  }
+  .toolkit-card h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:14px}
+  .toolkit-card p{margin-bottom:18px}
+  .toolkit-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .toolkit-tags span{
+    font-family:'Sora',sans-serif;font-size:.74rem;font-weight:600;color:var(--purple);
+    background:#fff;border:1px solid #EBD9F2;border-radius:999px;padding:5px 12px;
+  }
+  @media(max-width:760px){.toolkit-card{grid-template-columns:1fr;padding:32px 26px}.toolkit-art{max-width:220px;margin:0 auto}}
+  footer{padding:34px 0;text-align:center;font-size:.86rem;color:#8A7BA3}
+  footer .tagline{font-family:'Sora',sans-serif;font-weight:700;color:var(--purple);margin-bottom:6px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="ASCENDE Network home">
+      <svg viewBox="0 0 40 34" aria-hidden="true"><path d="M20 1 39 33H1Z" fill="#321560"/><path d="M13 20l4-5 3 4 4-6 6 9 3 5H8Z" fill="#fff" opacity=".9"/></svg>
+      <span class="brand-name">ASCENDE<span>NETWORK</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#session">Next session</a></li>
+      <li><a href="#climb">What we do</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#join" class="btn btn-primary">Join us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">A women-centered empowerment community</p>
+      <h1>Every woman deserves a path <em>to the summit.</em></h1>
+      <div class="verbs" aria-label="Our motto">
+        <span>…<b>Edit</b>.</span><span><b>Equip</b>.</span><span><b>Empower</b>.</span>
+      </div>
+      <p class="lead">ASCENDE Network brings women together every month to learn practical skills, grow through mentorship, and lead in their businesses, careers, and communities.</p>
+      <p class="hero-cta">
+        <a class="btn btn-primary" href="#session">Join the August session</a>
+        <a class="btn btn-ghost" href="#climb">How it works</a>
+      </p>
+    </div>
+    <div class="ascent" aria-hidden="true">
+      <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mtn" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4B2380"/><stop offset="1" stop-color="#321560"/>
+          </linearGradient>
+        </defs>
+        <path d="M40 350 L235 40 L410 350 Z" fill="url(#mtn)"/>
+        <path d="M180 128 L235 40 L288 128 L262 118 L248 132 L232 114 L214 130 L198 118 Z" fill="#fff" opacity=".92"/>
+        <path d="M105 340 C150 300 130 268 175 240 C220 212 205 180 235 150" fill="none" stroke="#F2A9D6" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>
+        <g>
+          <circle cx="105" cy="340" r="13" fill="#fff"/><circle cx="105" cy="340" r="13" fill="none" stroke="#C4378F" stroke-width="2"/>
+          <text class="milestone" x="128" y="345">LEARN</text>
+        </g>
+        <g>
+          <circle cx="175" cy="240" r="13" fill="#fff"/><circle cx="175" cy="240" r="13" fill="none" stroke="#C4378F" stroke-width="2"/>
+          <text class="milestone" x="198" y="245">GROW</text>
+        </g>
+        <g>
+          <circle cx="235" cy="150" r="13" fill="#fff"/><circle cx="235" cy="150" r="13" fill="none" stroke="#C4378F" stroke-width="2"/>
+          <text class="milestone" x="258" y="155">LEAD</text>
+        </g>
+        <g>
+          <line x1="235" y1="40" x2="235" y2="6" stroke="#C4378F" stroke-width="3"/>
+          <path d="M235 6 h92 l-10 11 10 11 h-92 Z" fill="#C4378F"/>
+          <text x="243" y="21" fill="#fff" font-family="Sora,sans-serif" font-size="9.5" font-weight="700" letter-spacing=".08em">OPPORTUNITIES</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="session">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Empowered Ladies Virtual Hangout · August edition</p>
+      <h2>Next session</h2>
+    </div>
+    <div class="session-grid">
+      <a class="flyer reveal" href="assets/august-flyer.jpg" aria-label="Open the August session flyer">
+        <img src="assets/august-flyer.jpg" alt="August session flyer: Creating Opportunities in the AI Boom" loading="lazy">
+      </a>
+      <div class="reveal">
+        <span class="badge">Practical session</span>
+        <h3 class="session-title">Creating Opportunities in the <em>AI Boom</em></h3>
+        <p class="speaker">with <strong>Bolarinwa Ajayi</strong> — Solution Engineer &amp; Microsoft Digi Girls Award Winner<br>Hosted by <strong>Dr. Olusegun</strong> (USA) &middot; Powered by <strong>The ASCENDE Team</strong></p>
+        <ul class="details">
+          <li><span class="k">Date</span><span class="v">Saturday, August 1st, 2026</span></li>
+          <li><span class="k">Time</span><span class="v">1:00 PM WAT · 2:00 PM CET · 8:00 AM EDT</span></li>
+          <li><span class="k">Length</span><span class="v">90 minutes of hands-on training + Q&amp;A</span></li>
+          <li><span class="k">Where</span><span class="v">Live on Zoom — the join link is sent to you after you register</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/1YAmGswF050MZJEDh_T9LRwa9bW-9gOTNFYajNnuNpTc/viewform" rel="noopener">Register free to attend</a>
+        <a class="btn btn-ghost" href="assets/august-flyer.jpg" download>Download the flyer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="climb">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">What we do</p>
+      <h2>The climb: learn, grow, lead.</h2>
+      <p>Every session moves you one stage up the mountain — the same path our members walk from first skill to full confidence.</p>
+    </div>
+    <div class="climb">
+      <div class="stage reveal">
+        <span class="stage-flag" aria-hidden="true">✦</span>
+        <h3>Learn</h3>
+        <p>Monthly virtual hangouts with guest experts — practical, hands-on training in digital skills, AI tools, business, and career growth. No theory-only talks.</p>
+      </div>
+      <div class="stage reveal">
+        <span class="stage-flag" aria-hidden="true">✦</span>
+        <h3>Grow</h3>
+        <p>Mentorship and honest conversations with women a few steps ahead of you — entrepreneurs, professionals, and founders who share what actually worked.</p>
+      </div>
+      <div class="stage reveal">
+        <span class="stage-flag" aria-hidden="true">⚑</span>
+        <h3>Lead</h3>
+        <p>Members turn skills into results: launching businesses, landing roles, and lifting other women as they climb. That flag at the summit is yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Who it's for</p>
+      <h2>A community of women ready to rise</h2>
+    </div>
+    <div class="who">
+      <div class="reveal"><h3>Small business owners</h3><p>Grow your customer base with digital marketing and AI-powered tools.</p></div>
+      <div class="reveal"><h3>Entrepreneurs</h3><p>Sharpen your ideas with mentorship and practical business skills.</p></div>
+      <div class="reveal"><h3>Recent graduates</h3><p>Build in-demand skills and confidence for your first career moves.</p></div>
+      <div class="reveal"><h3>Young professionals</h3><p>Level up, stand out, and step into leadership in the age of AI.</p></div>
+      <div class="reveal"><h3>Stay-at-home mums</h3><p>Find clarity, community, and flexible income skills on your own schedule.</p></div>
+      <div class="reveal"><h3>Future graduate students</h3><p>Prepare for graduate school with digital, data, and research-ready skills.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="past">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Recent sessions</p>
+      <h2>Where we've been climbing</h2>
+    </div>
+    <div class="gallery">
+      <figure class="reveal"><img src="assets/july-edition.jpg" alt="July 2026 flyer: Resilience as the Bedrock of Freedom" loading="lazy"><figcaption><time datetime="2026-07">July 2026</time> Resilience as the Bedrock of Freedom</figcaption></figure>
+      <figure class="reveal"><img src="assets/june-edition.jpg" alt="June 2026 flyer: Claim the Tools — Turn AI into Opportunity" loading="lazy"><figcaption><time datetime="2026-06">June 2026</time> Claim the Tools: Turn AI into Opportunity</figcaption></figure>
+      <figure class="reveal"><img src="assets/may-edition.jpg" alt="May 2026 flyer: Forge the Way, Become the Force" loading="lazy"><figcaption><time datetime="2026-05">May 2026</time> Forge the Way, Become the Force</figcaption></figure>
+      <figure class="reveal"><img src="assets/april-edition.jpg" alt="April 2026 flyer: The Growth Approach — Focus on Evolution" loading="lazy"><figcaption><time datetime="2026-04">April 2026</time> The &ldquo;Growth&rdquo; Approach (Focus on Evolution)</figcaption></figure>
+      <figure class="reveal"><img src="assets/march-edition.jpg" alt="March 2026 flyer: The Strength Approach — Focus on Resilience" loading="lazy"><figcaption><time datetime="2026-03">March 2026</time> The Strength Approach &mdash; Focus on Resilience</figcaption></figure>
+      <figure class="reveal"><img src="assets/feb-edition.jpg" alt="February 2026 flyer: Master the Path, Own the Climb" loading="lazy"><figcaption><time datetime="2026-02">February 2026</time> Master the Path, Own the Climb</figcaption></figure>
+      <figure class="reveal"><img src="assets/jan-edition.jpg" alt="January 2026 flyer: See the Summit, Rise to It" loading="lazy"><figcaption><time datetime="2026-01">January 2026</time> See the Summit, Rise to It</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="toolkit-card reveal">
+      <div>
+        <p class="eyebrow">Free member resource</p>
+        <h2>Olusegun Python Toolkit</h2>
+        <p>A free, plug-and-play Python learning environment we built for our members and mentees — especially those with limited internet access. Install it once and everything works <strong>fully offline</strong>: Jupyter Notebook, guided welcome lessons, and a complete pre-installed stack for data science and machine learning (pandas, NumPy, Matplotlib, PyTorch, TensorFlow, and more). No setup headaches — download, install, and start coding in minutes.</p>
+        <p class="toolkit-tags"><span>Learn Python offline</span><span>Beginner-friendly</span><span>Jupyter included</span><span>ML libraries bundled</span><span>Windows</span></p>
+        <a class="btn btn-primary" href="https://github.com/chrystali2002/Olusegun-Python-Toolkit" rel="noopener">Download free on GitHub</a>
+      </div>
+      <div class="toolkit-art" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="30" width="160" height="110" rx="10" fill="#321560"/>
+          <rect x="20" y="30" width="160" height="26" rx="10" fill="#4B2380"/>
+          <circle cx="38" cy="43" r="4" fill="#C4378F"/><circle cx="52" cy="43" r="4" fill="#D9A441"/><circle cx="66" cy="43" r="4" fill="#fff" opacity=".7"/>
+          <text x="34" y="82" fill="#F2A9D6" font-family="monospace" font-size="13">&gt;&gt;&gt; import pandas</text>
+          <text x="34" y="102" fill="#fff" font-family="monospace" font-size="13">&gt;&gt;&gt; learn()</text>
+          <text x="34" y="122" fill="#D9A441" font-family="monospace" font-size="13"># no internet needed</text>
+          <path d="M60 160 h80 l-8 14 h-64 Z" fill="#4B2380"/>
+          <rect x="88" y="140" width="24" height="20" fill="#321560"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap reveal">
+    <h2>Ready to climb with us?</h2>
+    <p>Join a sisterhood of women who edit their stories, equip themselves with real skills, and empower each other to the summit.</p>
+    <div class="join-actions">
+      <a class="btn btn-primary" href="mailto:ascende26@gmail.com?subject=I%20want%20to%20join%20ASCENDE%20Network">Join the community</a>
+      <a class="btn btn-ghost" href="https://instagram.com/ascende2026" rel="noopener">Follow us on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="tagline">ASCENDE NETWORK — …Edit. Equip. Empower</p>
+    <p>© 2026 ASCENDE Network · Founded &amp; coordinated by Dr. Christiana Olusegun · <a href="mailto:ascende26@gmail.com">ascende26@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
