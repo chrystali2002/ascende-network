@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chrystali2002.github.io/ascende-network/sitemap.xml
