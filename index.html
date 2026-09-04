@@ -224,7 +224,7 @@
 <nav>
   <div class="nav-inner">
     <a class="brand" href="#top" aria-label="ASCENDE Network home">
-      <svg viewBox="0 0 40 34" aria-hidden="true"><path d="M20 1 39 33H1Z" fill="#321560"/><path d="M13 20l4-5 3 4 4-6 6 9 3 5H8Z" fill="#fff" opacity=".9"/></svg>
+      <img src="assets/logo-icon.png" alt="ASCENDE Network logo" style="width:34px;height:auto">
       <span class="brand-name">ASCENDE<span>NETWORK</span></span>
     </a>
     <ul class="nav-links">
@@ -408,8 +408,27 @@
       <a class="btn btn-primary" href="mailto:ascende26@gmail.com?subject=I%20want%20to%20join%20ASCENDE%20Network">Join the community</a>
       <a class="btn btn-ghost" href="https://instagram.com/ascende2026" rel="noopener">Follow us on Instagram</a>
     </div>
+    <div id="booking-button-container" style="margin-top:20px"></div>
   </div>
 </section>
+
+<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script>
+  function initAscendeBookingButton() {
+    var target = document.getElementById('booking-button-container');
+    if (target && window.calendar && window.calendar.schedulingButton) {
+      calendar.schedulingButton.load({
+        url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1IuIsqpiUvw5CUD-3jKOlZOELiANjfDfRNe_ka6Ai2k4K0uzt5KlREEG5B6rGGUFVlmVrau7Km?gv=true',
+        color: '#C4378F',
+        label: 'Book a 1:1 mentorship session',
+        target,
+      });
+    }
+  }
+</script>
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async onload="initAscendeBookingButton()"></script>
+<!-- end Google Calendar Appointment Scheduling -->
 
 <footer>
   <div class="wrap">
