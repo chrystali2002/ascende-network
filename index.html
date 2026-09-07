@@ -242,6 +242,36 @@
     .reveal{opacity:1;transform:none;transition:none}
     .btn{transition:none}
   }
+  /* ---------- Anthem player ---------- */
+  .anthem{
+    background:linear-gradient(135deg,var(--purple),#4B2380);
+    border-radius:var(--radius);padding:22px 26px;margin:0 auto;max-width:640px;
+    display:flex;align-items:center;gap:16px;box-shadow:0 10px 30px rgba(50,21,96,.18);
+  }
+  .anthem-btn{
+    flex:none;width:52px;height:52px;border-radius:50%;background:var(--magenta);
+    border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:transform .15s ease;
+  }
+  .anthem-btn:hover{transform:scale(1.06)}
+  .anthem-btn svg{width:20px;height:20px}
+  .anthem-info{flex:1;min-width:0;color:#fff}
+  .anthem-info .label{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem;margin:0 0 6px;
+  }
+  .anthem-bar{
+    position:relative;height:5px;background:rgba(255,255,255,.25);border-radius:999px;
+    cursor:pointer;overflow:hidden;
+  }
+  .anthem-bar-fill{
+    position:absolute;left:0;top:0;height:100%;width:0%;background:var(--gold);
+    border-radius:999px;
+  }
+  .anthem-time{
+    font-family:'Sora',sans-serif;font-size:.72rem;color:rgba(255,255,255,.75);
+    margin-top:6px;
+  }
+  @media(max-width:520px){.anthem{padding:18px}}
 </style>
 <!-- Structured data: monthly session as an Event -->
 <script type="application/ld+json">
@@ -361,6 +391,71 @@
     </div>
   </div>
 </header>
+
+<div class="wrap" style="padding:26px 24px 6px">
+  <div class="anthem reveal">
+    <button class="anthem-btn" id="anthemToggle" aria-label="Play ASCENDE anthem">
+      <svg id="anthemPlayIcon" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="anthemPauseIcon" viewBox="0 0 24 24" fill="#fff" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <div class="anthem-info">
+      <p class="label">🎵 The ASCENDE Anthem</p>
+      <div class="anthem-bar" id="anthemBar">
+        <div class="anthem-bar-fill" id="anthemBarFill"></div>
+      </div>
+      <p class="anthem-time"><span id="anthemCurrent">0:00</span> / <span id="anthemDuration">0:00</span></p>
+    </div>
+  </div>
+</div>
+<audio id="anthemAudio" src="assets/ascende-anthem.mp3" preload="metadata"></audio>
+<script>
+  (function(){
+    var audio = document.getElementById('anthemAudio');
+    var toggle = document.getElementById('anthemToggle');
+    var playIcon = document.getElementById('anthemPlayIcon');
+    var pauseIcon = document.getElementById('anthemPauseIcon');
+    var bar = document.getElementById('anthemBar');
+    var barFill = document.getElementById('anthemBarFill');
+    var current = document.getElementById('anthemCurrent');
+    var duration = document.getElementById('anthemDuration');
+
+    function fmt(t){
+      if(isNaN(t)) return '0:00';
+      var m = Math.floor(t/60), s = Math.floor(t%60);
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+    audio.addEventListener('loadedmetadata', function(){
+      duration.textContent = fmt(audio.duration);
+    });
+    audio.addEventListener('timeupdate', function(){
+      current.textContent = fmt(audio.currentTime);
+      barFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+    });
+    audio.addEventListener('ended', function(){
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      toggle.setAttribute('aria-label', 'Play ASCENDE anthem');
+    });
+    toggle.addEventListener('click', function(){
+      if(audio.paused){
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+        toggle.setAttribute('aria-label', 'Pause ASCENDE anthem');
+      } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        toggle.setAttribute('aria-label', 'Play ASCENDE anthem');
+      }
+    });
+    bar.addEventListener('click', function(e){
+      var rect = bar.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+  })();
+</script>
 
 <section id="session">
   <div class="wrap">
