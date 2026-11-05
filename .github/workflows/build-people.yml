@@ -1,0 +1,75 @@
+name: Build people list
+
+# Runs whenever a photo is added, renamed or removed in assets/people/
+# Photo names look like:  Role_Title_[First_]Last_Country.jpg
+#   Advisor_Dr_Akaeze_USA.jpg
+#   Advisor_Dr_Chioma_Akaeze_USA.jpg
+#   Ambassador_Ms_Ada_Okoye_United-Kingdom.jpg
+#   Media_Mr_Tunde_Bello_Nigeria.jpg
+#   Partner_Mrs_Jane_Doe_Canada.jpg
+on:
+  push:
+    paths:
+      - 'assets/people/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate people.json from photo filenames
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime
+
+          FOLDER = 'assets/people'
+          EXTS = {'.jpg', '.jpeg', '.png', '.webp'}
+          ROLES = ['advisor', 'ambassador', 'volunteer', 'media', 'creative', 'partner', 'supporter', 'patron']
+          TITLES = {'dr', 'prof', 'mr', 'mrs', 'ms', 'miss', 'mx', 'engr', 'pastor', 'rev', 'hon', 'barr', 'chief', 'sir', 'dame', 'pharm', 'arc'}
+
+          people = []
+          if os.path.isdir(FOLDER):
+              for fn in sorted(os.listdir(FOLDER)):
+                  stem, ext = os.path.splitext(fn)
+                  if ext.lower() not in EXTS:
+                      continue
+                  parts = [p for p in stem.split('_') if p]
+                  if len(parts) < 3 or parts[0].lower() not in ROLES:
+                      print('SKIPPED (name does not match Role_Title_Name_Country):', fn)
+                      continue
+                  role = parts[0].lower()
+                  country = parts[-1].replace('-', ' ')
+                  mid = parts[1:-1]
+                  title = ''
+                  if mid and mid[0].lower() in TITLES:
+                      title = mid[0].capitalize()
+                      mid = mid[1:]
+                  name = ' '.join(mid).strip()
+                  if not name:
+                      print('SKIPPED (no name found):', fn)
+                      continue
+                  people.append({'file': fn, 'role': role, 'title': title, 'name': name, 'country': country})
+
+          order = {r: i for i, r in enumerate(ROLES)}
+          people.sort(key=lambda p: (order[p['role']], p['name'].lower()))
+          with open('people.json', 'w', encoding='utf-8') as f:
+              json.dump({'updated': datetime.date.today().isoformat(), 'people': people}, f, ensure_ascii=False, indent=2)
+          print('Wrote people.json with', len(people), 'people')
+          PY
+
+      - name: Commit people.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add people.json
+          if git diff --cached --quiet; then
+            echo "No change"
+          else
+            git commit -m "Update team list from photos"
+            git push
+          fi
