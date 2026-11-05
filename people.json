@@ -1,4 +1,12 @@
 {
   "updated": "2026-11-05",
-  "people": []
+  "people": [
+    {
+      "file": "Advisor_Mrs_Faith_Paul_POLAND.jpg",
+      "role": "advisor",
+      "title": "Mrs",
+      "name": "Faith Paul",
+      "country": "POLAND"
+    }
+  ]
 }
