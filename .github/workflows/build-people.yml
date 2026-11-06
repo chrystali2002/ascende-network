@@ -2,6 +2,7 @@ name: Build people list
 
 # Runs whenever a photo is added, renamed or removed in assets/people/
 # Photo names look like:  Role_Title_[First_]Last_Country.jpg
+#   Founder_Dr_Christiana_Olusegun_USA.jpg
 #   Advisor_Dr_Akaeze_USA.jpg
 #   Advisor_Dr_Chioma_Akaeze_USA.jpg
 #   Ambassador_Ms_Ada_Okoye_United-Kingdom.jpg
@@ -29,7 +30,7 @@ jobs:
 
           FOLDER = 'assets/people'
           EXTS = {'.jpg', '.jpeg', '.png', '.webp'}
-          ROLES = ['advisor', 'ambassador', 'volunteer', 'media', 'creative', 'partner', 'supporter', 'patron']
+          ROLES = ['founder', 'advisor', 'ambassador', 'volunteer', 'media', 'creative', 'partner', 'supporter', 'patron']
           TITLES = {'dr', 'prof', 'mr', 'mrs', 'ms', 'miss', 'mx', 'engr', 'pastor', 'rev', 'hon', 'barr', 'chief', 'sir', 'dame', 'pharm', 'arc'}
 
           people = []
