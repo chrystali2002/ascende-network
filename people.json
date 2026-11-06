@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "people": [
     {
       "file": "Advisor_Mrs_Faith_Paul_POLAND.jpg",
@@ -20,6 +20,13 @@
       "role": "ambassador",
       "title": "Mrs",
       "name": "Goodness Paul",
+      "country": "USA"
+    },
+    {
+      "file": "Media_Mrs_Oluwatoyin_Atikekeresola_USA.jpg",
+      "role": "media",
+      "title": "Mrs",
+      "name": "Oluwatoyin Atikekeresola",
       "country": "USA"
     }
   ]
